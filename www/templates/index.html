@@ -1,0 +1,28 @@
+<html>
+<body>
+<title>IMDB API</title>
+
+<form action="/echo" method="POST">
+<input name="text">
+<input type="submit" value="Echo">
+</form>
+ 
+{% if result %}
+    {% for key, value in result.items() %}
+        {% if key  == 'Poster' %}
+            <h4>Poster:</h4>
+            <img src= {{value}} style=width:400px;height:auto ></img>
+        {% endif %}
+        {% if key  == 'Ratings' %}
+            {% for ratings  in result.Ratings %}
+                <h4>Rating from {{ ratings.Source }} : {{ ratings.Value }}</h4>
+            {% endfor %}
+        {% endif %}
+        {% if key  != 'Poster' and key != 'Ratings' %}
+            <h4> {{ key }}  :  {{ value }} </h4>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>

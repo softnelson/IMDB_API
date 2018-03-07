@@ -1,0 +1,11 @@
+version: '2'
+services:
+
+  api:
+    build:
+      context: www/.
+      dockerfile: Dockerfile
+    volumes: 
+    - ./www:/opt/www
+    ports:
+      - "80:80"
