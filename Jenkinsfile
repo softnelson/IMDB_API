@@ -3,7 +3,7 @@ pipeline {
    agent any  
    stages{
 
-        stage('create container'){
+        
             
             try {
                sh "docker-compose build"
@@ -12,7 +12,7 @@ pipeline {
                   warn "Could not build docker images"
                   throw t
             }
-           }
+           
         stage('test container') {
             steps {
                     script{    
