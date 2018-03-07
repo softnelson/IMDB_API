@@ -5,9 +5,13 @@ pipeline {
 
         stage('create container'){
             
-            steps{
-                sh 'docker-compose up'
-               }
+            try {
+               sh "docker-compose build"
+            }
+               catch (Throwable t) {
+                  warn "Could not build docker images"
+                  throw t
+            }
            }
         stage('test container') {
             steps {
